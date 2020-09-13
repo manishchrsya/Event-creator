@@ -1,11 +1,13 @@
 import Axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import EventCard from "./EventCard";
+import "./EventPage.css";
 
 const EventPage = () => {
-  const token =
-    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNTksInVzZXJuYW1lIjoiS21hbmlzaEBnbWFpbC5jb20iLCJleHAiOjE2MDA1Mzk3MDAsImVtYWlsIjoiS21hbmlzaEBnbWFpbC5jb20ifQ.IQmnjkHVkHkBpsk8T2MH26uM9Z_YEmCvWIVW5VMH2GQ";
+  const [eventList, setEventList] = useState([]);
+
+  const token = "Bearer" + " " + localStorage.getItem("token").toString();
 
   useEffect(() => {
     Axios.get("https://ik-react-task.herokuapp.com/events/", {
@@ -14,26 +16,26 @@ const EventPage = () => {
       },
     })
       .then((response) => {
-        console.log(response);
+        setEventList(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const apiCall = (obj) => {
-    //app call
-    //response
-    // state: ek arr of obj
-    // arr.push(obj)
-    //localStorage.set('token', token)
-    //const to = awat localStorage.get('token)
-  };
-
   return (
     <>
       <Navbar />
-      <EventCard />
+      <div className="event-data">
+        {eventList.map((list) => (
+          <EventCard
+            name={list.name}
+            event_type={list.event_type}
+            start={list.start}
+            end={list.end}
+          />
+        ))}
+      </div>
     </>
   );
 };

@@ -1,0 +1,12 @@
+.event-data {
+  width: 1400px;
+  /* background-color: brown; */
+  /* display: flex; */
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

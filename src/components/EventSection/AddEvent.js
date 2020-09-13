@@ -13,15 +13,19 @@ const AddEvent = () => {
   const [addEventData, setAddEventData] = useState({});
   const createEventUrl = "https://ik-react-task.herokuapp.com/events/";
 
-  const token =
-    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNTksInVzZXJuYW1lIjoiS21hbmlzaEBnbWFpbC5jb20iLCJleHAiOjE2MDA1Mzk3MDAsImVtYWlsIjoiS21hbmlzaEBnbWFpbC5jb20ifQ.IQmnjkHVkHkBpsk8T2MH26uM9Z_YEmCvWIVW5VMH2GQ";
+  const token = "Bearer" + " " + localStorage.getItem("token").toString();
 
   console.log(addEventData);
 
   const createEvent = () => {
     return Axios.post(
       createEventUrl,
-      { addEventData },
+      {
+        name: addEventData.name,
+        event_type: addEventData.event_type,
+        start: addEventData.start,
+        end: addEventData.end,
+      },
       {
         headers: {
           Authorization: token,
@@ -47,7 +51,14 @@ const AddEvent = () => {
 
   useEffect(() => {
     createEvent();
-  }, []);
+  }, [
+    {
+      name: addEventData.name,
+      event_type: addEventData.event_type,
+      start: addEventData.start,
+      end: addEventData.end,
+    },
+  ]);
 
   useEffect(() => {
     eventTypeList();
@@ -63,6 +74,7 @@ const AddEvent = () => {
         centered
         visible={visible}
         onCancel={() => setVisible(false)}
+        onSubmit={() => setVisible(false)}
         width="40%"
         footer={null}
       >

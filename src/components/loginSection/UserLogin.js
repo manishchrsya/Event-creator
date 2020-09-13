@@ -3,8 +3,9 @@ import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
 import "./UserLogin.css";
 
-const UserLogin = () => {
+const UserLogin = (props) => {
   const [newUser, setNewUser] = useState(false);
+  const { setLoginStatus } = props;
 
   return (
     <div className="main-container">
@@ -23,7 +24,10 @@ const UserLogin = () => {
           {newUser ? (
             <RegistrationPage setNewUser={setNewUser} />
           ) : (
-            <LoginPage setNewUser={setNewUser} />
+            <LoginPage
+              setNewUser={setNewUser}
+              setLoginStatus={setLoginStatus}
+            />
           )}
         </div>
       </div>

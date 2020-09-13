@@ -4,19 +4,18 @@ import React, { useState } from "react";
 const LoginPage = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const { setLoginStatus } = props;
 
-  const token =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNTksInVzZXJuYW1lIjoiS21hbmlzaEBnbWFpbC5jb20iLCJleHAiOjE2MDA1Mzg2NTIsImVtYWlsIjoiS21hbmlzaEBnbWFpbC5jb20ifQ.ph1GxDkOD7jov2C-dCgafRAsYcfwdErDRu-ibnb_QxA";
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(emailAddress, password);
 
     Axios.post("https://ik-react-task.herokuapp.com/accounts/login/", {
       email: emailAddress,
       password: password,
     })
       .then((response) => {
-        console.log(response);
+        localStorage.setItem("token", response.data.token);
+        setLoginStatus(response.status);
       })
       .catch((err) => {
         console.log(err);
