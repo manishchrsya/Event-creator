@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import AddEvent from "./AddEvent";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [user] = useState("Manish");
+  const { setToken } = props;
+
+  const handleLogOut = () => {};
 
   return (
     <div className="nav">
@@ -11,7 +14,12 @@ const Navbar = () => {
         <ion-icon name="person-sharp"></ion-icon>
         <span>{user}</span>
       </div>
-      <AddEvent />
+      <div className="nav-buttons">
+        <div onClick={() => handleLogOut()} className="log-out">
+          Log Out
+        </div>
+        <AddEvent />
+      </div>
     </div>
   );
 };

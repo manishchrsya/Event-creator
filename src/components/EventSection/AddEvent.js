@@ -66,7 +66,11 @@ const AddEvent = () => {
 
   return (
     <div>
-      <Button type="primary" onClick={() => setVisible(true)}>
+      <Button
+        style={{ backgroundColor: "green" }}
+        type="primary"
+        onClick={() => setVisible(true)}
+      >
         Add New Event
       </Button>
       <Modal

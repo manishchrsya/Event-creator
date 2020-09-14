@@ -90,7 +90,15 @@ const RegistrationPage = (props) => {
       <button type="submit" className="btn btn-primary">
         Create New Account
       </button>
-      <p style={{ cursor: "pointer" }} onClick={() => setNewUser(false)}>
+      <p
+        style={{
+          cursor: "pointer",
+          fontWeight: "900",
+          color: "red",
+          marginTop: 12,
+        }}
+        onClick={() => setNewUser(false)}
+      >
         Already have account?
       </p>
     </form>

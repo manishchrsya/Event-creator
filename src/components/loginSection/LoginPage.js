@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
+import "./LoginPage.css";
 
 const LoginPage = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -46,10 +47,22 @@ const LoginPage = (props) => {
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button
+        style={{ marginTop: 7 }}
+        type="submit"
+        className="btn btn-primary"
+      >
         Log In
       </button>
-      <p style={{ cursor: "pointer" }} onClick={() => setNewUser(true)}>
+      <p
+        style={{
+          cursor: "pointer",
+          fontWeight: "900",
+          color: "red",
+          marginTop: 12,
+        }}
+        onClick={() => setNewUser(true)}
+      >
         New User?
       </p>
     </form>

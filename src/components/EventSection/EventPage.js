@@ -4,8 +4,9 @@ import Navbar from "./Navbar";
 import EventCard from "./EventCard";
 import "./EventPage.css";
 
-const EventPage = () => {
+const EventPage = (props) => {
   const [eventList, setEventList] = useState([]);
+  // const { setToken } = props;
 
   const token = "Bearer" + " " + localStorage.getItem("token").toString();
 

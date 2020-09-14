@@ -4,14 +4,19 @@ import EventPage from "./components/EventSection/EventPage";
 import UserLogin from "./components/loginSection/UserLogin";
 
 function App() {
-  const [loginStatus, setLoginStatus] = useState("");
-  console.log("loginStatus", loginStatus);
+  const [loginStatus, setLoginStatus] = useState(" ");
+  const token = useState(localStorage.getItem("token"));
+
+  // const logOut = () => setToken("");
+
+  // const storeTokenInState = () => setToken(localStorage.getItem("token"));
+
   return (
     <div className="App">
-      {loginStatus !== "200" ? (
-        <EventPage />
-      ) : (
+      {token == "" ? (
         <UserLogin setLoginStatus={setLoginStatus} />
+      ) : (
+        <EventPage />
       )}
     </div>
   );

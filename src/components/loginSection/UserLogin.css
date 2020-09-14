@@ -11,7 +11,11 @@
 .content-body {
   width: 1150px;
   height: 75vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin: auto;
+  padding: 50px;
   background-color: #fff;
   box-shadow: 2px 1px 10px 1px #2073c0;
   display: flex;
@@ -20,25 +24,41 @@
 .web-intro {
   width: 40%;
   padding: 20px;
-  background-color: #2682d8;
-  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
+  justify-content: flex-start;
+  margin-right: 120px;
   align-items: center;
+  color: grey;
 }
 
+.web-intro > h1,
+h3 {
+  /* margin-top: -30px; */
+  color: #15548f;
+  text-transform: uppercase;
+}
+
+.web-intro > h1 {
+  margin-top: -100px;
+  font-size: 50px;
+}
+.web-intro > h3 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.bullet-points {
+  color: #000000;
+  font-size: 17px;
+  margin: 10px;
+  text-align: center;
+}
 .user-Login {
   width: 60%;
-  background-color: red;
   display: flex;
+  background-color: burlywood;
+  margin: auto;
+  margin-left: 500px;
   justify-content: center;
   align-items: center;
 }
-/* .user-Login Form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-
-/* } */
