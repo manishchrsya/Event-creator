@@ -25,6 +25,7 @@ const RegistrationPage = (props) => {
         password: password,
       })
         .then((response) => {
+          setNewUser(false);
           console.log(response);
         })
         .catch((err) => {

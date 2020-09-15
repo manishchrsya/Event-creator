@@ -4,27 +4,29 @@ import { Modal, Button, Form, Input, DatePicker, Select } from "antd";
 import "antd/dist/antd.css";
 import { eventTypeListAPi } from "../../services/event";
 import Axios from "axios";
+import Moment from "moment";
 
 const { Option } = Select;
 
-const AddEvent = () => {
+const AddEvent = (props) => {
   const [visible, setVisible] = useState(false);
   const [typeList, setTypeList] = useState([]);
-  const [addEventData, setAddEventData] = useState({});
+  const [nameDataFromInput, setNameDataFromInput] = useState("");
+  const [eventTypeDataFromInput, setEventTypeDataFromInput] = useState("");
+  const [startDateDataFromInput, setStartDateDataFromInput] = useState("");
+  const [endDateDataFromInput, setEndDateDataFromInput] = useState("");
+  const { getEventList } = props;
   const createEventUrl = "https://ik-react-task.herokuapp.com/events/";
-
-  const token = "Bearer" + " " + localStorage.getItem("token").toString();
-
-  console.log(addEventData);
+  const token = "Bearer" + " " + localStorage.getItem("token");
 
   const createEvent = () => {
     return Axios.post(
       createEventUrl,
       {
-        name: addEventData.name,
-        event_type: addEventData.event_type,
-        start: addEventData.start,
-        end: addEventData.end,
+        name: nameDataFromInput,
+        event_type: eventTypeDataFromInput,
+        start: startDateDataFromInput,
+        end: endDateDataFromInput,
       },
       {
         headers: {
@@ -32,14 +34,11 @@ const AddEvent = () => {
         },
       }
     )
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        getEventList();
+      })
       .catch((err) => err);
-  };
-
-  const onFinish = (values) => {
-    values.start = values.start.format();
-    values.end = values.end.format();
-    setAddEventData(values);
   };
 
   const eventTypeList = async () => {
@@ -49,27 +48,47 @@ const AddEvent = () => {
     }
   };
 
-  useEffect(() => {
-    createEvent();
-  }, [
-    {
-      name: addEventData.name,
-      event_type: addEventData.event_type,
-      start: addEventData.start,
-      end: addEventData.end,
-    },
-  ]);
+  // This function gets called when clicking the add button from the Modal
 
-  useEffect(() => {
+  const onFinish = () => {
+    createEvent();
+    setVisible(false);
+  };
+
+  // Extracting event details from the add event form and storing in state...
+
+  const handleOnEventNameChange = (event) => {
+    const { value } = event.target;
+    setNameDataFromInput(value);
+  };
+
+  const handleOnEventTypeChange = (item) => {
+    setEventTypeDataFromInput(item);
+  };
+
+  const handleOnEventStartDateChange = (value) => {
+    const startDate = Moment(value).format();
+    setStartDateDataFromInput(startDate);
+  };
+
+  const handleOnEventEndDateChange = (value) => {
+    const endDate = Moment(value).format();
+    setEndDateDataFromInput(endDate);
+  };
+
+  // function to open Modal to create the event.........
+
+  const handleOnAddNewEventButtonClick = () => {
+    setVisible(true);
     eventTypeList();
-  }, []);
+  };
 
   return (
     <div>
       <Button
         style={{ backgroundColor: "green" }}
         type="primary"
-        onClick={() => setVisible(true)}
+        onClick={() => handleOnAddNewEventButtonClick()}
       >
         Add New Event
       </Button>
@@ -78,7 +97,6 @@ const AddEvent = () => {
         centered
         visible={visible}
         onCancel={() => setVisible(false)}
-        onSubmit={() => setVisible(false)}
         width="40%"
         footer={null}
       >
@@ -92,14 +110,14 @@ const AddEvent = () => {
               display: "flex",
             }}
           >
-            <Input />
+            <Input onChange={handleOnEventNameChange} />
           </Form.Item>
           <Form.Item
             name="event_type"
             label="Event Type"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Event type">
+            <Select onSelect={handleOnEventTypeChange} placeholder="Event type">
               {typeList &&
                 typeList.length > 0 &&
                 typeList.map((list, index) => (
@@ -114,11 +132,11 @@ const AddEvent = () => {
             label="Start Date"
             rules={[{ required: true }]}
           >
-            <DatePicker />
+            <DatePicker onChange={handleOnEventStartDateChange} />
           </Form.Item>
 
           <Form.Item name="end" label="End Date" rules={[{ required: true }]}>
-            <DatePicker />
+            <DatePicker onChange={handleOnEventEndDateChange} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">

@@ -5,15 +5,15 @@ import UserLogin from "./components/loginSection/UserLogin";
 
 function App() {
   const [loginStatus, setLoginStatus] = useState(" ");
-  const token = useState(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
 
   // const logOut = () => setToken("");
 
   // const storeTokenInState = () => setToken(localStorage.getItem("token"));
-
+  console.log(token);
   return (
     <div className="App">
-      {token == "" ? (
+      {token === null ? (
         <UserLogin setLoginStatus={setLoginStatus} />
       ) : (
         <EventPage />

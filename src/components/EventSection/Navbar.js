@@ -4,9 +4,12 @@ import "./Navbar.css";
 
 const Navbar = (props) => {
   const [user] = useState("Manish");
-  const { setToken } = props;
+  const { setToken, getEventList } = props;
 
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    window.location.pathname = "/";
+  };
 
   return (
     <div className="nav">
@@ -18,7 +21,7 @@ const Navbar = (props) => {
         <div onClick={() => handleLogOut()} className="log-out">
           Log Out
         </div>
-        <AddEvent />
+        <AddEvent getEventList={getEventList} />
       </div>
     </div>
   );

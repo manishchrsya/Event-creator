@@ -2,7 +2,7 @@ import Axios from "axios";
 
 const BaseUrl = "https://ik-react-task.herokuapp.com/events/event_types/";
 
-const token = "Bearer" + " " + localStorage.getItem("token").toString();
+const token = "Bearer" + " " + localStorage.getItem("token");
 
 export const eventTypeListAPi = () => {
   return Axios.get(BaseUrl, {

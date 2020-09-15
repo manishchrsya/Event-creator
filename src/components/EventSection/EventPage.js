@@ -4,13 +4,16 @@ import Navbar from "./Navbar";
 import EventCard from "./EventCard";
 import "./EventPage.css";
 
-const EventPage = (props) => {
+const EventPage = () => {
   const [eventList, setEventList] = useState([]);
-  // const { setToken } = props;
 
-  const token = "Bearer" + " " + localStorage.getItem("token").toString();
+  const token = "Bearer" + " " + localStorage.getItem("token");
 
   useEffect(() => {
+    getEventList();
+  }, []);
+
+  const getEventList = () =>
     Axios.get("https://ik-react-task.herokuapp.com/events/", {
       headers: {
         Authorization: token,
@@ -22,11 +25,10 @@ const EventPage = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
 
   return (
     <>
-      <Navbar />
+      <Navbar getEventList={getEventList} />
       <div className="event-data">
         {eventList.map((list) => (
           <EventCard

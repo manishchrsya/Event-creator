@@ -10,10 +10,6 @@ const EventCard = (props) => {
     return Moment(date).format("MMM Do YY");
   };
 
-  // const eventEndDate = () => {
-  //   return Moment(end).format("MMM Do YY");
-  // };
-
   return (
     <div className="body">
       <div className="event-image">
