@@ -5,7 +5,7 @@ import "./Navbar.css";
 const Navbar = (props) => {
   // const [user] = useState("Manish");
   const { getEventList, user } = props;
-
+  console.log("user", user);
   const handleLogOut = () => {
     localStorage.removeItem("token");
     window.location.pathname = "/";

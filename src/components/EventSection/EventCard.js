@@ -22,13 +22,15 @@ const EventCard = (props) => {
         <p className="event-type">{event_type}</p>
         <div className="show-duration">
           <div>
-            <span style={{ fontWeight: 500, color: "green" }}>
-              Start date:-
+            <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
+              Start date :-
             </span>
             <span className="start-date">{eventDates(start)}</span>
           </div>
           <div>
-            <span style={{ fontWeight: 500, color: "green" }}>End date:-</span>
+            <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
+              End date :-
+            </span>
             <span className="end-date">{eventDates(end)}</span>
           </div>
         </div>
