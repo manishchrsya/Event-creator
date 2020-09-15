@@ -3,8 +3,8 @@ import AddEvent from "./AddEvent";
 import "./Navbar.css";
 
 const Navbar = (props) => {
-  const [user] = useState("Manish");
-  const { setToken, getEventList } = props;
+  // const [user] = useState("Manish");
+  const { getEventList, user } = props;
 
   const handleLogOut = () => {
     localStorage.removeItem("token");

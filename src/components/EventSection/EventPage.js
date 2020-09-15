@@ -4,14 +4,16 @@ import Navbar from "./Navbar";
 import EventCard from "./EventCard";
 import "./EventPage.css";
 
-const EventPage = () => {
+const EventPage = (props) => {
   const [eventList, setEventList] = useState([]);
-
+  const { user } = props;
   const token = "Bearer" + " " + localStorage.getItem("token");
 
   useEffect(() => {
     getEventList();
   }, []);
+
+  // get Api called to render the list of created events................
 
   const getEventList = () =>
     Axios.get("https://ik-react-task.herokuapp.com/events/", {
@@ -28,7 +30,7 @@ const EventPage = () => {
 
   return (
     <>
-      <Navbar getEventList={getEventList} />
+      <Navbar getEventList={getEventList} user={user} />
       <div className="event-data">
         {eventList.map((list) => (
           <EventCard

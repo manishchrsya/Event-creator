@@ -8,7 +8,6 @@
   box-shadow: 3px 3px 10px 3px gray;
 }
 .user-name {
-  width: 100px;
   display: flex;
   padding: 2px;
   justify-content: center;
@@ -32,6 +31,7 @@
   cursor: pointer;
 }
 ion-icon {
+  font-size: 30px;
   margin: 5px;
   margin-right: 8px;
 }

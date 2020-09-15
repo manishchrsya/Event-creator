@@ -5,7 +5,7 @@ import "./UserLogin.css";
 
 const UserLogin = (props) => {
   const [newUser, setNewUser] = useState(false);
-  const { setLoginStatus } = props;
+  const { setLoginStatus, setUser } = props;
 
   return (
     <div className="main-container">
@@ -25,6 +25,7 @@ const UserLogin = (props) => {
             <RegistrationPage setNewUser={setNewUser} />
           ) : (
             <LoginPage
+              setUser={setUser}
               setNewUser={setNewUser}
               setLoginStatus={setLoginStatus}
             />

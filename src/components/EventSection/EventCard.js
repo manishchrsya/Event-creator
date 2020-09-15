@@ -6,6 +6,8 @@ import Moment from "moment";
 const EventCard = (props) => {
   const { name, event_type, start, end } = props;
 
+  // converting the date format...........
+
   const eventDates = (date) => {
     return Moment(date).format("MMM Do YY");
   };

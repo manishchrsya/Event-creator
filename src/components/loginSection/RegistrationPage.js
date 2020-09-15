@@ -10,16 +10,11 @@ const RegistrationPage = (props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
+  // Post Api called to register new user....
+
   const handleRegistration = (event) => {
     event.preventDefault();
     if (errMsg.length === 0) {
-      console.log(emailAddress, password, confirmPassword);
-      //     registrationApi(emailAddress, password);
-      //   .then((result) => {
-      //     console.log("zzzzzzzzzzzzzzzzzzzzz", result);
-      //   })
-      //   .catch((err) => {});
-
       Axios.post("https://ik-react-task.herokuapp.com/accounts/register/", {
         email: emailAddress,
         password: password,
@@ -34,10 +29,7 @@ const RegistrationPage = (props) => {
     }
   };
 
-  //   const app = (email) => {
-  //     const cc = "aaa";
-  //     return "ammmmmmmm";
-  //   };
+  //handling the condition to compare the set password and confirm password...........
 
   const handlerPassword = (pass) => {
     setConfirmPassword(pass);

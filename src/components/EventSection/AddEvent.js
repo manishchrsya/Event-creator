@@ -4,7 +4,6 @@ import { Modal, Button, Form, Input, DatePicker, Select } from "antd";
 import "antd/dist/antd.css";
 import Axios from "axios";
 import Moment from "moment";
-
 const { Option } = Select;
 
 const AddEvent = (props) => {
@@ -19,6 +18,8 @@ const AddEvent = (props) => {
   const createEventListUrl =
     "https://ik-react-task.herokuapp.com/events/event_types/";
   const token = "Bearer" + " " + localStorage.getItem("token");
+
+  //.create event post api called.........
 
   const createEvent = () => {
     return Axios.post(
@@ -42,6 +43,8 @@ const AddEvent = (props) => {
       .catch((err) => err);
   };
 
+  // event list Api called.............................................
+
   const eventTypeList = () => {
     return Axios.get(createEventListUrl, {
       headers: {
@@ -49,7 +52,6 @@ const AddEvent = (props) => {
       },
     })
       .then((result) => {
-        // console.log("result", result.data);
         const lists = result.data;
         if (lists && lists.length > 0) {
           setTypeList(lists);
@@ -57,12 +59,6 @@ const AddEvent = (props) => {
       })
       .catch((err) => {});
   };
-  // const eventTypeList = async () => {
-  //   const lists = await eventTypeListAPi();
-  //   if (lists && lists.length > 0) {
-  //     setTypeList(lists);
-  //   }
-  // };
 
   // This function gets called when clicking the add button from the Modal
 
@@ -74,15 +70,18 @@ const AddEvent = (props) => {
   // Extracting event details from the add event form and storing in state...
 
   const handleOnEventNameChange = (event) => {
+    // Name
     const { value } = event.target;
     setNameDataFromInput(value);
   };
 
   const handleOnEventTypeChange = (item) => {
+    //Event Type
     setEventTypeDataFromInput(item);
   };
 
   const handleOnEventStartDateChange = (value) => {
+    // start date
     const startDate = Moment(value).format();
     setStartDateDataFromInput(startDate);
   };
