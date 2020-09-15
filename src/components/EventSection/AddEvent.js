@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddEvent.css";
 import { Modal, Button, Form, Input, DatePicker, Select } from "antd";
 import "antd/dist/antd.css";
-import { eventTypeListAPi } from "../../services/event";
 import Axios from "axios";
 import Moment from "moment";
 
@@ -17,6 +16,8 @@ const AddEvent = (props) => {
   const [endDateDataFromInput, setEndDateDataFromInput] = useState("");
   const { getEventList } = props;
   const createEventUrl = "https://ik-react-task.herokuapp.com/events/";
+  const createEventListUrl =
+    "https://ik-react-task.herokuapp.com/events/event_types/";
   const token = "Bearer" + " " + localStorage.getItem("token");
 
   const createEvent = () => {
@@ -41,12 +42,27 @@ const AddEvent = (props) => {
       .catch((err) => err);
   };
 
-  const eventTypeList = async () => {
-    const lists = await eventTypeListAPi();
-    if (lists && lists.length > 0) {
-      setTypeList(lists);
-    }
+  const eventTypeList = () => {
+    return Axios.get(createEventListUrl, {
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((result) => {
+        // console.log("result", result.data);
+        const lists = result.data;
+        if (lists && lists.length > 0) {
+          setTypeList(lists);
+        }
+      })
+      .catch((err) => {});
   };
+  // const eventTypeList = async () => {
+  //   const lists = await eventTypeListAPi();
+  //   if (lists && lists.length > 0) {
+  //     setTypeList(lists);
+  //   }
+  // };
 
   // This function gets called when clicking the add button from the Modal
 
