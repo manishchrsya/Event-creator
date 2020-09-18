@@ -16,7 +16,7 @@ const RegistrationPage = (props) => {
     event.preventDefault();
     if (errMsg.length === 0) {
       Axios.post("https://ik-react-task.herokuapp.com/accounts/register/", {
-        email: emailAddress,
+        email: emailAddress.toLowerCase(),
         password: password,
       })
         .then((response) => {

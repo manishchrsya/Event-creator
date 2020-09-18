@@ -5,14 +5,15 @@ import "./LoginPage.css";
 const LoginPage = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
-  const { setLoginStatus, setNewUser, setUser } = props;
+  const { setLoginStatus, setNewUser } = props;
+  // const token = localStorage.getItem("token");
 
   const handleLogin = (event) => {
     event.preventDefault();
     sendUserNameToNav();
 
     Axios.post("https://ik-react-task.herokuapp.com/accounts/login/", {
-      email: emailAddress,
+      email: emailAddress.toLowerCase(),
       password: password,
     })
       .then((response) => {
@@ -24,7 +25,11 @@ const LoginPage = (props) => {
       });
   };
 
-  const sendUserNameToNav = () => setUser(emailAddress);
+  const sendUserNameToNav = () => {
+    const extractUserName = emailAddress.split("@");
+    // setUser(extractUserName[0]);
+    localStorage.setItem("user", extractUserName[0]);
+  };
 
   return (
     <form onSubmit={handleLogin}>

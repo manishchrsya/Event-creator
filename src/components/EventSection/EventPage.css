@@ -7,3 +7,28 @@
   align-items: flex-start;
   flex-wrap: wrap;
 }
+
+.ant-picker-calendar .ant-picker-calendar {
+  width: 720px;
+}
+
+/* .ant-picker-body .ant-picker-body { */
+/* margin-left: 200px; */
+/* margin-right: 200px; */
+/* padding: 50px; */
+/* width: 50%; */
+/* height: 20%; */
+/* } */
+.ant-picker-calendar-header {
+  margin-right: 40px;
+}
+
+/* .ant-picker-calendar-date-value {
+  width: 80px;
+  background-color: red;
+} */
+/* .ant-picker-calendar-date-content {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+} */

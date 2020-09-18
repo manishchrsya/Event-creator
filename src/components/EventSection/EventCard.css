@@ -27,6 +27,11 @@
   color: green;
 }
 
+/* .event-type span {
+  font-weight: 500;
+  margin-right: 10px;
+} */
+
 .show-duration {
   align-self: flex-end;
 }

@@ -4,12 +4,20 @@ import EventImage from "../../Images/event.jpg";
 import Moment from "moment";
 
 const EventCard = (props) => {
-  const { name, event_type, start, end } = props;
+  const { name, event_type, start, end, colorCode } = props;
 
   // converting the date format...........
 
-  const eventDates = (date) => {
+  const extractDay = (date) => {
+    return Moment(date).format("dddd");
+  };
+
+  const extractDate = (date) => {
     return Moment(date).format("MMM Do YY");
+  };
+
+  const extractTime = (date) => {
+    return Moment(date).format("LT");
   };
 
   return (
@@ -19,19 +27,25 @@ const EventCard = (props) => {
       </div>
       <div className="event-details">
         <h3>{name}</h3>
-        <p className="event-type">{event_type}</p>
+        <p style={{ color: colorCode }} className="event-type">
+          {event_type}
+        </p>
         <div className="show-duration">
           <div>
             <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
-              Start date :-
+              Event date :-
             </span>
-            <span className="start-date">{eventDates(start)}</span>
+            <span className="start-date">
+              {extractDay(start) + ",  " + extractDate(start)}
+            </span>
           </div>
           <div>
             <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
-              End date :-
+              Time slot :-
             </span>
-            <span className="end-date">{eventDates(end)}</span>
+            <span className="end-date">
+              {extractTime(start) + " " + "To" + " " + extractTime(end)}
+            </span>
           </div>
         </div>
       </div>
