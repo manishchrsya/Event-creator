@@ -3,10 +3,12 @@ import AddEvent from "./AddEvent";
 import "./Navbar.css";
 
 const Navbar = (props) => {
-  const { getEventList, setColorCode } = props;
-  // console.log("user", user);
+  const { getEventList } = props;
+
+  // handling Log-Out feature.........
+
   const handleLogOut = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     window.location.pathname = "/";
   };
 
@@ -20,7 +22,7 @@ const Navbar = (props) => {
         <div onClick={() => handleLogOut()} className="log-out">
           Log Out
         </div>
-        <AddEvent setColorCode={setColorCode} getEventList={getEventList} />
+        <AddEvent getEventList={getEventList} />
       </div>
     </div>
   );

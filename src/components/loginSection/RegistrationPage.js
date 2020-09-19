@@ -24,7 +24,7 @@ const RegistrationPage = (props) => {
           console.log(response);
         })
         .catch((err) => {
-          console.log(err);
+          alert("failed to register the user!!");
         });
     }
   };

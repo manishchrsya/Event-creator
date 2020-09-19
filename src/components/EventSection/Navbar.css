@@ -1,6 +1,6 @@
 .nav {
   width: 100%;
-  background-color: #004b92;
+  background-color: var(--primary-color);
   padding: 20px;
   color: white;
   display: flex;
@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  font-family: cursive;
+  text-transform: uppercase;
 }
 .nav-buttons {
   display: flex;

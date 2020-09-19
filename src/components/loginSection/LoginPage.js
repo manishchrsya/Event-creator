@@ -6,7 +6,8 @@ const LoginPage = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const { setLoginStatus, setNewUser } = props;
-  // const token = localStorage.getItem("token");
+
+  // calling login post API call........
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -21,13 +22,14 @@ const LoginPage = (props) => {
         setLoginStatus(response.status);
       })
       .catch((err) => {
-        console.log(err);
+        alert("Login failed!!");
       });
   };
 
+  // storing user name to localstorage....
+
   const sendUserNameToNav = () => {
     const extractUserName = emailAddress.split("@");
-    // setUser(extractUserName[0]);
     localStorage.setItem("user", extractUserName[0]);
   };
 

@@ -27,12 +27,17 @@ const EventCard = (props) => {
       </div>
       <div className="event-details">
         <h3>{name}</h3>
-        <p style={{ color: colorCode }} className="event-type">
+        <p
+          style={{
+            color: colorCode[event_type],
+          }}
+          className="event-type"
+        >
           {event_type}
         </p>
         <div className="show-duration">
           <div>
-            <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
+            <span style={{ fontWeight: 500, color: "green" }}>
               Event date :-
             </span>
             <span className="start-date">
@@ -40,7 +45,7 @@ const EventCard = (props) => {
             </span>
           </div>
           <div>
-            <span style={{ fontWeight: 500, color: "green", marginRight: 10 }}>
+            <span style={{ fontWeight: 500, color: "green" }}>
               Time slot :-
             </span>
             <span className="end-date">

@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import "./AddEvent.css";
-import {
-  Modal,
-  Button,
-  Form,
-  Input,
-  DatePicker,
-  Select,
-  TimePicker,
-} from "antd";
+import { Modal, Button, Form, Input, DatePicker, Select } from "antd";
 
 import Axios from "axios";
 import Moment from "moment";
@@ -28,28 +20,11 @@ const AddEvent = (props) => {
     ""
   );
 
-  const { getEventList, setColorCode } = props;
+  const { getEventList } = props;
   const createEventUrl = "https://ik-react-task.herokuapp.com/events/";
   const createEventListUrl =
     "https://ik-react-task.herokuapp.com/events/event_types/";
   const token = "Bearer" + " " + localStorage.getItem("token");
-
-  const colorCodeArray = {
-    Bootcamp: "#f56f42",
-    Charity: "#f5d442",
-    "Charitable auctions": "",
-    Exhibitions: "#69c265",
-    Corporate: "#65c292",
-    Family: "#60d1c4",
-    Fundraising: "#60b7d1",
-    Holiday: "#4a86c2",
-    "Music events": "#524ac2",
-    "Networking events": "#904ac2",
-    "Product launches": "#c24ac0",
-    "Sports events": "#c24a80",
-    "Sponsored runs": "#c24a4a",
-    "Trade shows": "#aadef0",
-  };
 
   const timeSlotArray = [
     "10:00:00 - 10:30:00",
@@ -78,7 +53,6 @@ const AddEvent = (props) => {
     "06:30:00 - 07:00:00",
   ];
 
-  console.log(eventStartTimeDataFromInput, eventEndTimeDataFromInput);
   //.create event post api called.........
 
   const createEvent = () => {
@@ -88,7 +62,7 @@ const AddEvent = (props) => {
         name: nameDataFromInput,
         event_type: eventTypeDataFromInput,
         start:
-          eventDateDataFromInput + "T" + eventStartTimeDataFromInput + "+05:30", //2020-09-17T23:13:36+05:30
+          eventDateDataFromInput + "T" + eventStartTimeDataFromInput + "+05:30",
         end:
           eventDateDataFromInput + "T" + eventEndTimeDataFromInput + "+05:30",
       },
@@ -102,7 +76,7 @@ const AddEvent = (props) => {
         console.log(response);
         getEventList();
       })
-      .catch((err) => err);
+      .catch((err) => alert("This slot is already booked!!"));
   };
 
   // event list Api called.............................................
@@ -140,7 +114,6 @@ const AddEvent = (props) => {
   const handleOnEventTypeChange = (item) => {
     //Event Type
     setEventTypeDataFromInput(item);
-    setColorCode(colorCodeArray[item]);
   };
 
   const handleOnEventStartDateChange = (value) => {
@@ -159,10 +132,6 @@ const AddEvent = (props) => {
     setVisible(true);
     eventTypeList();
   };
-
-  // const addColorCodeInTheCalender = () => {
-  //   console.log()
-  // };
 
   return (
     <div>
