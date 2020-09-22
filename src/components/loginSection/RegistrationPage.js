@@ -52,7 +52,6 @@ const RegistrationPage = (props) => {
           type="email"
           className="form-control"
           id="exampleInputEmail1"
-          aria-describedby="emailHelp"
         />
       </div>
       <div className="form-group">

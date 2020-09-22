@@ -5,7 +5,7 @@ import "./LoginPage.css";
 const LoginPage = (props) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
-  const { setLoginStatus, setNewUser } = props;
+  const { setNewUser } = props;
 
   // calling login post API call........
 
@@ -19,7 +19,7 @@ const LoginPage = (props) => {
     })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        setLoginStatus(response.status);
+        window.location.pathname = "/";
       })
       .catch((err) => {
         alert("Login failed!!");
@@ -43,7 +43,6 @@ const LoginPage = (props) => {
           type="email"
           className="form-control"
           id="exampleInputEmail1"
-          aria-describedby="emailHelp"
         />
       </div>
       <div className="form-group">

@@ -45,7 +45,7 @@ const EventPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  const onChange = () => {};
+
   return (
     <>
       <Navbar getEventList={getEventList} />
@@ -54,9 +54,9 @@ const EventPage = () => {
         <Calendar
           className="calender-view"
           defaultView="month"
-          onChange={onChange}
           tileContent={({ activeStartDate, date }) => {
             let one = new Date(date).toDateString();
+
             let totalEvets = [];
             for (let i = 0; i < eventList.length; ++i) {
               let e = eventList[i];
@@ -70,6 +70,7 @@ const EventPage = () => {
                   }
                 });
                 totalEvets = [...totalEvets, ...moreEvents];
+
                 console.log("totalEvents", totalEvets);
                 return (
                   <div className="df">
